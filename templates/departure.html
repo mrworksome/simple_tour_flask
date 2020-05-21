@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron text-center mt-4">
+        <h1 class="display-5 mt-4 ">Вылет из <span data-test="from">{{ from_town[2:] }}</span></h1>
+        <p class="mb-4" ><span data-test="tourcount">{{ counter_line }}</span>, от <span data-test="pricemin">
+            {{ (tours.values()|min(attribute="price")).price }}</span> до <span data-test="pricemax">
+            {{ (tours.values()|max(attribute="price")).price }}</span> и от <span data-test="nightsmax">
+            {{ (tours.values()|min(attribute="nights")).nights }}</span> до <span data-test="nightsmax">
+            {{ (tours.values()|max(attribute="nights")).nights }}</span> ночей</p>
+    </div>
+    <!-- HERO -->
+
+    <!-- CARDS -->
+
+      <div class="card-deck mt-5" data-test="cards">
+        {% for key, value in tours.items() %}
+            <div class="col-4" data-test="card">
+                <div class="card mb-3" >
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img src="{{ value.picture }}" class="card-img-top embed-responsive-item" data-test="picture" alt="" >
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ value.title }}</h5>
+                        <p class="card-text">{{ value.description|truncate(94) }}</p>
+                        <a href="/tour/{{ key }}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+
+
+{% endblock %}

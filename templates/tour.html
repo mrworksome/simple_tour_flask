@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card text-center m-3" style="height: auto" style="width: auto">
+    <div class="card-body">
+        <h1 class="card-title" data-test="title">{{ tour.title }} <br> {% for i in range(tour.stars|int) %} ★ {% endfor %}</h1>
+    </div>
+        <!-- HERO -->
+
+        <div class="embed-responsive embed-responsive-16by9">
+            <img src="{{ tour.picture }}" class="card-img-top embed-responsive-item" data-test="picture" alt="" >
+        </div>
+        <p class="card-text" data-test="description">{{ tour.description }}</p>
+        <p class="card-text" data-test="lead"><span data-test="country">{{ tour.country }}</span> из <span data-text="departure">{{ from_town[2:] }}</span>
+            на <span data-text="nights">{{ nights }}</span></p>
+        <a href="" class="btn btn-success btn-lg" data-test="buybutton">Купить тур за <span data-test="price">{{ tour.price }}</span></a>
+    </div>
+{% endblock %}

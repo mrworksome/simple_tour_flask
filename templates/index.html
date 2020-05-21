@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- HERO -->
+
+    <div class="jumbotron text-center mt-4">
+      <h1 class="display-4">Все туры нашей компании</h1>
+      <p class="lead">{{ subtitle }}</p>
+      <p class="mt-5 w-50 mx-auto">{{ description }}</p>
+    </div>
+
+    <!-- CARDS -->
+        <div class="card-deck mt-5">
+{#    <div class="row mt-5" data-test="cards">#}
+        {% for key,value in tours.items() %}
+{#            {% if key <= 6 %}#}
+                <div class="col-4" data-test="card">
+                    <div class="card mb-3" >
+                        <div class="embed-responsive embed-responsive-16by9">
+                        <img src="{{ value.picture }}" class="card-img-top embed-responsive-item" data-test="picture" >
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ value.title }}</h5>
+                            <p class="card-text">{{ value.description|truncate(94) }}</p>
+                            <a href="/tour/{{key}}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+{#            {% endif %}#}
+        {% endfor %}
+    </div>
+
+{% endblock %}
